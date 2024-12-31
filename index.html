@@ -3,99 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Capsule</title>
+    <title>Happy New Year</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+            color: white;
+            font-family: 'Arial', sans-serif;
             text-align: center;
         }
+        .container {
+            margin-top: 50px;
+        }
         h1 {
-            color: #333;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         p {
-            color: #666;
+            font-size: 1.5rem;
+            margin: 20px 10px;
         }
-        form {
+        .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 30px 0;
+        }
+        .fireworks {
+            font-size: 2rem;
             margin-top: 20px;
         }
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 10px;
+        .emoji {
+            animation: bounce 1s infinite alternate;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
+        footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #ffd700;
         }
-        button:hover {
-            background-color: #45a049;
-        }
-        .messages {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .message {
-            background-color: white;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-20px);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Time Capsule Website</h1>
-    <p>Create a message to your future self!</p>
-    <form onsubmit="return handleSubmit()">
-        <textarea id="messageInput" placeholder="Write your message here..."></textarea>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-    <div class="messages" id="messageList"></div>
-    <script>
-        function handleSubmit() {
-            const messageInput = document.getElementById('messageInput');
-            const messageList = document.getElementById('messageList');
-
-            if (messageInput.value.trim()) {
-                const message = messageInput.value.trim();
-                saveMessage(message);
-                displayMessage(messageList, message);
-                messageInput.value = ''; // Clear the input
-                alert('Your message has been submitted!');
-            } else {
-                alert('Please write a message before submitting.');
-            }
-
-            return false; // Prevent actual form submission
-        }
-
-        function saveMessage(message) {
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.push(message);
-            localStorage.setItem('messages', JSON.stringify(messages));
-        }
-
-        function displayMessages() {
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            const messageList = document.getElementById('messageList');
-            messages.forEach(message => displayMessage(messageList, message));
-        }
-
-        function displayMessage(messageList, message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message');
-            messageDiv.textContent = message;
-            messageList.appendChild(messageDiv);
-        }
-
-        // Display existing messages on page load
-        window.onload = displayMessages;
-    </script>
+    <div class="container">
+        <h1>🎉 Happy New Year 2025! 🎉</h1>
+        <p>Wishing you and your loved ones a year filled with joy, success, and good health!</p>
+        <div class="quote">
+            "The future belongs to those who believe in the beauty of their dreams." – Eleanor Roosevelt
+        </div>
+        <div class="fireworks">
+            ✨🌟💥🎇🎆
+        </div>
+        <p class="emoji">🎊🎉🥳</p>
+    </div>
+    <footer>
+        Created by Suman Kishore Behera
+    </footer>
 </body>
 </html>
