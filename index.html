@@ -5,22 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Capsule</title>
     <style>
-        /* Your CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .messages {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .message {
+            background-color: white;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to the Time Capsule Website</h1>
     <p>Create a message to your future self!</p>
     <form onsubmit="return handleSubmit()">
-        <textarea placeholder="Write your message here..."></textarea>
+        <textarea id="messageInput" placeholder="Write your message here..."></textarea>
         <br>
         <button type="submit">Submit</button>
     </form>
+    <div class="messages" id="messageList"></div>
     <script>
         function handleSubmit() {
-            alert('Your message has been submitted!');
+            const messageInput = document.getElementById('messageInput');
+            const messageList = document.getElementById('messageList');
+
+            if (messageInput.value.trim()) {
+                const message = messageInput.value.trim();
+                saveMessage(message);
+                displayMessage(messageList, message);
+                messageInput.value = ''; // Clear the input
+                alert('Your message has been submitted!');
+            } else {
+                alert('Please write a message before submitting.');
+            }
+
             return false; // Prevent actual form submission
         }
+
+        function saveMessage(message) {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push(message);
+            localStorage.setItem('messages', JSON.stringify(messages));
+        }
+
+        function displayMessages() {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            const messageList = document.getElementById('messageList');
+            messages.forEach(message => displayMessage(messageList, message));
+        }
+
+        function displayMessage(messageList, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.textContent = message;
+            messageList.appendChild(messageDiv);
+        }
+
+        // Display existing messages on page load
+        window.onload = displayMessages;
     </script>
 </body>
 </html>
