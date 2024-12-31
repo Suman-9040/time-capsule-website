@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Capsule</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
+        /* Your CSS styles */
     </style>
 </head>
 <body>
     <h1>Welcome to the Time Capsule Website</h1>
     <p>Create a message to your future self!</p>
+    <form onsubmit="return handleSubmit()">
+        <textarea placeholder="Write your message here..."></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function handleSubmit() {
+            alert('Your message has been submitted!');
+            return false; // Prevent actual form submission
+        }
+    </script>
 </body>
 </html>
